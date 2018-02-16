@@ -5,9 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Address */
 
-$this->title = 'Редактировать пользователя';
-//$this->params['breadcrumbs'][] = ['label' => 'Addresses', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->title = 'Редактировать адрес';
+$this->params['breadcrumbs'][] = ['label' => 'Адреса', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="address-update">

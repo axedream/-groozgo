@@ -29,6 +29,8 @@ class Address extends \yii\db\ActiveRecord
         return [
             [['address'], 'string'],
             [['name'], 'string', 'max' => 255],
+            [['name'], 'unique'],
+            [['name'], 'required'],
         ];
     }
 
@@ -39,8 +41,8 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'address' => 'Address',
+            'name' => 'Наименование',
+            'address' => 'Адрес',
         ];
     }
 }
