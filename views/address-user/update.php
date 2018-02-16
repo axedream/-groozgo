@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\AddressUser */
 
-$this->title = 'Update Address User: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Address Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Изменить связку Адрес-Пользователь: ';
+$this->params['breadcrumbs'][] = ['label' => 'Связки Адреса-Пользователи', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="address-user-update">
 

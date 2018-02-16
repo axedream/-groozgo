@@ -40,7 +40,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Пользователи', 'url' => ['/user']],
             ['label' => 'Адреса', 'url' => ['/address']],
-            ['label' => 'Пользователи<->Адреса', 'url' => ['/address-user']],
+            ['label' => 'Адреса<->Пользователи  ', 'url' => ['/address-user']],
         ],
     ]);
     NavBar::end();

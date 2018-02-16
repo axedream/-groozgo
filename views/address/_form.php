@@ -30,6 +30,7 @@ $addressDesc = empty($model->address) ? '' : Address::findOne($model->id)->addre
         'initValueText' => $addressDesc, // set the initial display text
         'options' => ['placeholder' => 'Введите адресс ...'],
         'pluginOptions' => [
+            'tags' => true,
             'allowClear' => true,
             'minimumInputLength' => 3,
             'language' => [

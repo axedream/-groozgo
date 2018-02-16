@@ -22,29 +22,32 @@ class AddressAjaxController extends Controller
 
     public function actionGetAddress($q = null){
         Yii::$app->response->format = Response::FORMAT_JSON;
-        /*
-        $out = ['results' => ['id' => '', 'text' => '']];
 
+        $out = ['results' => ['id' => '', 'text' => '']];
+        //либо результат из базы данных
         if (!is_null($q)) {
 
             $query = new Query;
-            $query->select('id, address AS text')->from('address')->where(['like', 'address', $q])->limit(20);
+            $query->select('address as id, address AS text')->from('address')->where(['like', 'address', $q])->limit(20);
             $command = $query->createCommand();
             $data = $command->queryAll();
             $out['results'] = array_values($data);
         }
-        */
 
-            $out = ['result'=>[
-                ['id'=>'0', 'text'=>'test1'],
-                ['id'=>'1', 'text'=>'test2'],
-                ['id'=>'2', 'text'=>'test3'],
+        //либо результат через API
+        if (!$data) {
+            //пока заглушка
+            $out = ['results' =>
+                [
+                    ['id' => 'test1', 'text' => 'test1'],
+                    ['id' => 'test2', 'text' => 'test2'],
+                    ['id' => 'test3', 'text' => 'test3'],
                 ],
             ];
 
+        }
 
-
-
+        //file_put_contents("c:\\OpenServer\\domains\\hosting\\yii2.txt","\nВыводимые данные:\n\n".print_r($out,TRUE), FILE_APPEND | LOCK_EX );
         return $out;
     }
 

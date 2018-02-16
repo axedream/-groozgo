@@ -29,8 +29,8 @@ class Address extends \yii\db\ActiveRecord
         return [
             [['address'], 'string'],
             [['name'], 'string', 'max' => 255],
-            [['name'], 'unique'],
-            [['name'], 'required'],
+            [['name','address'], 'required'],
+            [['name'],'unique','targetClass'=>'app\models\Address','targetAttribute'=>['name','address']],
         ];
     }
 

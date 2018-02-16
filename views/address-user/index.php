@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\search\AddressUserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Address Users';
+$this->title = 'Связка Адрес-Пользователь';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="address-user-index">
@@ -16,20 +16,39 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Address User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать связку Пользователь-Адрес', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute'=>'ID',
+                'headerOptions' => ['width' => '50'],
+                'content'=>function($data){
+                    return $data->id;
+                }
+            ],
 
-            'id',
             'address_id',
             'user_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'headerOptions' => ['width' => '80'],
+                'template' => '<div style="text-align: center">{update}{delete}{link}</div>',
+                'buttons' => [
+                    'update' => function ($url) {
+                        return '<a href="'.$url.'" style="padding-left: 6px; padding-right: 6px;"><span class="glyphicon glyphicon-pencil"></span></a>';
+                    },
+                    'delete' => function ($url) {
+                        return '<a href="'.$url.'" style="padding-left: 6px; padding-right: 6px;"><span class="glyphicon glyphicon-trash"></span></a>';
+                    },
+                ],
+            ],
+
         ],
     ]); ?>
 </div>
