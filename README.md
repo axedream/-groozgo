@@ -12,22 +12,31 @@
 <h5>
 <div>
     <p>Таблицы для хранения данных:</p>
-    <b>user c полями</b><br>
-    <div>
-         id(int(11) autoincrement)<br>
-         name(strign(255)) (), <br>
-         surname(string(255), <br>
-         birth (date), <br>
-         sex (int()),<br>
-         phone_number(string(255))<br>
-    </div>
-    <br>
-    <b>addres</b><br>
-    <div>
-        id(int(11) autoincrement)<br>
-        name(string(11)) - название, только вот вопрос чего и для чего оно<br>
-        address (text) <br>
-     </div>
+    <code>
+        <b>user</b><br>
+        <div>
+             id(int(11) autoincrement)<br>
+             name(strign(255)) (), <br>
+             surname(string(255), <br>
+             birth (date), <br>
+             sex (int()),<br>
+             phone_number(string(255))<br>
+        </div>
+        <br>
+        <b>address</b><br>
+        <div>
+            id(int(11) autoincrement)<br>
+            name(string(11)) - название, только вот вопрос чего<br>
+            address (text) <br>
+         </div>
+        <br>
+        <b>user_address</b><br>
+        <div>
+            id(int(11) autoincrement)<br>
+            user_id(int(11)) - ID пользователя<br>
+            address_id (int(11)) - ID адресса <br>
+        </div>
+    </code>
 </div>
 </h5>
 

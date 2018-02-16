@@ -7,11 +7,13 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute'=> 'user',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+
         'request' => [
             'cookieValidationKey' => 'XAaOX3aZAVknQ7GrepmdsV5wtvNCQlLL',
         ],
