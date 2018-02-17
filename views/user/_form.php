@@ -18,7 +18,7 @@ use yii\widgets\MaskedInput;
     <label class="control-label">Дата рождения</label>
     <?= DatePicker::widget([
             'name' => 'birth',
-            'value' => date('d-M-Y'),
+            'value' => date('d.M.Y'),
             'options' => ['placeholder' => 'Выберите дату ...'],
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
             'pluginOptions' => [
