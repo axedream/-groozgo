@@ -33,12 +33,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute'=>'address_id',
-                'filter'=>false,
+                //'filter'=>false,
+                //'headerOptions' => ['width' => '650'],
                 'content'=>function($data){
                     return $data->address->address;
                 }
             ],
-            'user_id',
+
+            [
+                'attribute'=>'user_id',
+                //'filter'=>false,
+                'headerOptions' => ['width' => '120'],
+                'content'=>function($data){
+                    return $data->user->name;
+                }
+            ],
+
 
             [
                 'class' => 'yii\grid\ActionColumn',

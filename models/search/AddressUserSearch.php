@@ -2,6 +2,8 @@
 
 namespace app\models\search;
 
+use app\models\Address;
+use app\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -50,6 +52,13 @@ class AddressUserSearch extends AddressUser
 
         $this->load($params);
 
+        $address = Address::findOne(['address'=>$this->address_id]);
+        $address_id = $address[0]->id;
+
+        $user = User::findOne(['name'=>$this->user_id]);
+        $user_id = $user[0]->id;
+
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
@@ -59,8 +68,8 @@ class AddressUserSearch extends AddressUser
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'address_id' => $this->address_id,
-            'user_id' => $this->user_id,
+            'address_id' => $address_id,
+            'user_id' => $user_id,
         ]);
 
         return $dataProvider;
