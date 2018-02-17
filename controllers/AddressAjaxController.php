@@ -24,7 +24,7 @@ class AddressAjaxController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $out = ['results' => ['id' => '', 'text' => '']];
-        //либо результат из базы данных
+        //либо результат из базы данных при отритцательном результате поиск будет проходить по yandex api через front
         if (!is_null($q)) {
 
             $query = new Query;
@@ -32,19 +32,6 @@ class AddressAjaxController extends Controller
             $command = $query->createCommand();
             $data = $command->queryAll();
             $out['results'] = array_values($data);
-        }
-
-        //либо результат через API
-        if (!$data) {
-            //пока заглушка
-            $out = ['results' =>
-                [
-                    ['id' => 'test1', 'text' => 'test1'],
-                    ['id' => 'test2', 'text' => 'test2'],
-                    ['id' => 'test3', 'text' => 'test3'],
-                ],
-            ];
-
         }
 
         //file_put_contents("c:\\OpenServer\\domains\\hosting\\yii2.txt","\nВыводимые данные:\n\n".print_r($out,TRUE), FILE_APPEND | LOCK_EX );

@@ -26,7 +26,6 @@
         <b>address</b><br>
         <div>
             id(int(11) autoincrement)<br>
-            name(string(11)) - название, только вот вопрос чего<br>
             address (text) <br>
          </div>
         <br>

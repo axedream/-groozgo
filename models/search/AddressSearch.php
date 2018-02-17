@@ -19,7 +19,7 @@ class AddressSearch extends Address
     {
         return [
             [['id'], 'integer'],
-            [['name', 'address'], 'safe'],
+            [['address'], 'safe'],
         ];
     }
 
@@ -62,8 +62,7 @@ class AddressSearch extends Address
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'address', $this->address]);
+        $query->andFilterWhere(['like', 'address', $this->address]);
 
         return $dataProvider;
     }

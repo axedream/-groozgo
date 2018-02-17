@@ -31,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
 
-            'address_id',
+            [
+                'attribute'=>'address_id',
+                'filter'=>false,
+                'content'=>function($data){
+                    return $data->address->address;
+                }
+            ],
             'user_id',
 
             [

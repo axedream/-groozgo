@@ -11,8 +11,7 @@ class m180216_020951_addTablesFromAddresAddresWithUers extends Migration
     {
         $this->createTable('address',[
             'id'=>$this->primaryKey(),
-            'name'=>$this->string(255),
-            'address'=>$this->text(),
+            'address'=>$this->string(255),
         ]);
 
         $this->createTable('address_user',[

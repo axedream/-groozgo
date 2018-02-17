@@ -13,20 +13,29 @@ use app\models\Address;
 $url = \yii\helpers\Url::to(['address-ajax/get-address']);
 
 $addressDesc = empty($model->address) ? '' : Address::findOne($model->id)->address;
+$js = <<< JS
+ymaps.ready(init);
 
+function init() {
+    // Подключаем поисковые подсказки к полю ввода.
+    var suggestView = new ymaps.SuggestView('address-address');    
+}
 
+JS;
+
+$this->registerJs($js,yii\web\View::POS_READY);
 ?>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 
 <div class="address-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?php //$form->field($model, 'address')->textarea(['rows' => 6]) ?>
+    <!-- select2-suggest-container     select2-search__field -->
 
-
-    <?= $form->field($model, 'address')->widget(Select2::classname(), [
+    <?php /* $form->field($model, 'address')->widget(Select2::classname(), [
         'initValueText' => $addressDesc, // set the initial display text
         'options' => ['placeholder' => 'Введите адресс ...'],
         'pluginOptions' => [
@@ -45,8 +54,13 @@ $addressDesc = empty($model->address) ? '' : Address::findOne($model->id)->addre
             'templateResult' => new JsExpression('function(address) { return address.text; }'),
             'templateSelection' => new JsExpression('function (address) { return address.text; }'),
         ],
-    ]);
+    ]);*/
     ?>
+
+
+    <!-- <input type="text" id="SSS" class="input" placeholder="Введите адрес"> -->
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

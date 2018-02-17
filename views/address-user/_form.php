@@ -22,7 +22,7 @@ use app\models\User;
         <?= Select2::widget([
             'model' => $model,
             'attribute' => 'address_id',
-            'data' => ArrayHelper::map(Address::find()->asArray()->all(), 'id', 'name'),
+            'data' => ArrayHelper::map(Address::find()->asArray()->all(), 'id', 'address'),
             'theme' => Select2::THEME_BOOTSTRAP,
             'hideSearch' => false,
             'maintainOrder' => true,
