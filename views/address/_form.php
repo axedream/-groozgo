@@ -13,25 +13,30 @@ use app\models\Address;
 $url = \yii\helpers\Url::to(['address-ajax/get-address']);
 
 $addressDesc = empty($model->address) ? '' : Address::findOne($model->id)->address;
-$js = <<< JS
+$address_js_view = <<< JS
 ymaps.ready(init);
 
 function init() {
     // Подключаем поисковые подсказки к полю ввода.
-    var suggestView = new ymaps.SuggestView('address-address');    
+    var suggestView = new ymaps.SuggestView('suggest_address');    
 }
+    $(".address-form form").keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+      }
+    });
 
 JS;
 
-$this->registerJs($js,yii\web\View::POS_READY);
+$this->registerJs($address_js_view,yii\web\View::POS_READY);
 ?>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 
 <div class="address-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'address')->textInput(['maxlength' => true,'id' => 'suggest_address']) ?>
 
     <!-- select2-suggest-container     select2-search__field -->
 

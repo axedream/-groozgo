@@ -8,6 +8,7 @@ use app\models\search\AddressUserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Request;
 
 /**
  * AddressUserController implements the CRUD actions for AddressUser model.
@@ -57,10 +58,15 @@ class AddressUserController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            }
+
         }
 
         return $this->render('update', [
@@ -97,4 +103,5 @@ class AddressUserController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

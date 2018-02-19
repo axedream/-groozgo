@@ -34,6 +34,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //'address-ajax/add-address/<id:\d+>' => 'address-ajax/add-address',
             ],
         ],
     ],

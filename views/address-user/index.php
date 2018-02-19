@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать связку Пользователь-Адрес', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php// Html::a('Создать связку Пользователь-Адрес', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute'=>'address_id',
-                //'filter'=>false,
+                'filter'=>false,
                 //'headerOptions' => ['width' => '650'],
                 'content'=>function($data){
                     return $data->address->address;
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute'=>'user_id',
-                //'filter'=>false,
+                'filter'=>false,
                 'headerOptions' => ['width' => '120'],
                 'content'=>function($data){
                     return $data->user->name;
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия',
                 'headerOptions' => ['width' => '80'],
-                'template' => '<div style="text-align: center">{update}{delete}{link}</div>',
+                'template' => '<div style="text-align: center">{delete}{link}</div>',
                 'buttons' => [
                     'update' => function ($url) {
                         return '<a href="'.$url.'" style="padding-left: 6px; padding-right: 6px;"><span class="glyphicon glyphicon-pencil"></span></a>';

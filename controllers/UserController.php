@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Address;
+use app\models\AddressUser;
 use Yii;
 use app\models\User;
 use app\models\search\UserSearch;
@@ -41,12 +43,47 @@ class UserController extends Controller
         $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->delAddressUser($model->id);
+            $this->addAddressUser($model->id);
             return $this->redirect(['index']);
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Блок добавление связи адрес<->пользователь
+     * @param $user_id
+     */
+    public function addAddressUser($user_id) {
+        $input_id_address = Yii::$app->request->post('User')['input_id_address'];
+        if ($input_id_address) {
+            (new AddressUser)->setAddressUserFromUsers($input_id_address,$user_id);
+        }
+    }
+
+    public function delAddressUser($user_id){
+        $input_id_address = Yii::$app->request->post('User')['input_id_address_from_delete'];
+        if ($input_id_address) {
+            (new AddressUser)->delAddressUserFromUsers($input_id_address,$user_id);
+        }
+    }
+
+    public function getAddressUser($user_id){
+        $res = AddressUser::find()->where(['user_id'=>$user_id])->all();
+        $out=[];
+        if ($res) {
+            foreach ($res as $addressUser) {
+                $out[] = [
+                    'id' => $addressUser->address_id ,
+                    'address' => $addressUser->address->address
+                ];
+            }
+
+        }
+        return $out;
     }
 
     /**
@@ -61,11 +98,13 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->delAddressUser($model->id);
+            $this->addAddressUser($model->id);
             return $this->redirect(['index']);
         }
-
         return $this->render('update', [
             'model' => $model,
+            'model_address_user' => $this->getAddressUser($model->id),
         ]);
     }
 
